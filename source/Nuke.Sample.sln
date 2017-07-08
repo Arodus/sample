@@ -5,7 +5,19 @@ VisualStudioVersion = 15.0.26430.13
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = ".build", "..\build\.build.csproj", "{6CA0E981-A30C-49FE-8E96-166A96E58C58}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nuke.Sample", "Nuke.Sample\Nuke.Sample.csproj", "{AE561C37-4BC0-4AF1-9740-F5ED836789B8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nuke.Sample", "Nuke.Sample\Nuke.Sample.csproj", "{AE561C37-4BC0-4AF1-9740-F5ED836789B8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "misc", "misc", "{A9B06A31-502E-4E99-B189-B155B2B84506}"
+	ProjectSection(SolutionItems) = preProject
+		..\.editorconfig = ..\.editorconfig
+		..\.gitattributes = ..\.gitattributes
+		..\.gitignore = ..\.gitignore
+		..\.nuke = ..\.nuke
+		..\GitVersion.yml = ..\GitVersion.yml
+		..\LICENSE = ..\LICENSE
+		Nuke.Sample.sln.DotSettings = Nuke.Sample.sln.DotSettings
+		..\README.md = ..\README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
