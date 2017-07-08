@@ -18,7 +18,9 @@
 - Adapt license file in LICENSE and DotSettings file
 - Add package description
 - Check target frameworks
-- Provide or adapt `SOURCE` and `API_KEY` environment variables
+- Adapt `SOURCE` and `API_KEY` environment variables
+- Adapt `IconClass` attribute with [IcoMoon reference](https://icomoon.io/#preview-ultimate)
+- Implement task class
 
 ## License
 
