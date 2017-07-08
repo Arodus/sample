@@ -15,7 +15,7 @@ using static Nuke.Core.EnvironmentInfo;
 
 class SampleBuild : GitHubBuild
 {
-    public static void Main () => Execute<SampleBuild>(x => x.Compile);
+    public static int Main () => Execute<SampleBuild>(x => x.Compile);
 
     Target Clean => _ => _
             .Executes(() => DeleteDirectories(GlobDirectories(SolutionDirectory, "**/bin", "**/obj")))
