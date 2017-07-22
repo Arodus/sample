@@ -1,25 +1,29 @@
 ﻿// Copyright Matthias Koch 2017.
 // Distributed under the MIT License.
-// https://github.com/nuke-build/sample/blob/master/LICENSE
+// https://github.com/nuke-build/powershell/blob/master/LICENSE
 
 using System;
 using System.Linq;
 using Nuke.Common;
+using Nuke.Common.Tools.GitVersion;
 using Nuke.Common.Tools.NuGet;
 using Nuke.Core;
 using Nuke.Core.Utilities.Collections;
-using static Nuke.Common.IO.FileSystemTasks;
 using static Nuke.Common.Tools.MSBuild.MSBuildTasks;
 using static Nuke.Common.Tools.NuGet.NuGetTasks;
-using static Nuke.Core.EnvironmentInfo;
+using static Nuke.Core.IO.FileSystemTasks;
+using static Nuke.Core.IO.PathConstruction;
 
-class SampleBuild : GitHubBuild
+class Build : NukeBuild
 {
-    public static int Main () => Execute<SampleBuild>(x => x.Compile);
+    [Parameter] readonly string MyGetApiKey;
+    [GitVersion] readonly GitVersion GitVersion;
+
+    public static int Main () => Execute<Build>(x => x.Compile);
 
     Target Clean => _ => _
-            .Executes(() => DeleteDirectories(GlobDirectories(SolutionDirectory, "**/bin", "**/obj")))
-            .Executes(() => PrepareCleanDirectory(OutputDirectory));
+            .Executes(() => DeleteDirectories(GlobDirectories(SourceDirectory, "**/bin", "**/obj")))
+            .Executes(() => EnsureCleanDirectory(OutputDirectory));
 
     Target Restore => _ => _
             .DependsOn(Clean)
@@ -27,7 +31,7 @@ class SampleBuild : GitHubBuild
 
     Target Compile => _ => _
             .DependsOn(Restore)
-            .Executes(() => MSBuild(s => DefaultSettings.MSBuildCompile));
+            .Executes(() => MSBuild(s => DefaultSettings.MSBuildCompileWithVersion));
 
     Target Pack => _ => _
             .DependsOn(Compile)
@@ -39,6 +43,6 @@ class SampleBuild : GitHubBuild
                     .Where(x => !x.EndsWith("symbols.nupkg"))
                     .ForEach(x => NuGetPush(s => s
                             .SetTargetPath(x)
-                            .SetApiKey(EnsureVariable("API_KEY"))
-                            .SetSource(EnsureVariable("SOURCE")))));
+                            .SetSource("SOURCE_URL")
+                            .SetApiKey(MyGetApiKey))));
 }
