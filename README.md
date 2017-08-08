@@ -28,6 +28,6 @@
 
 Copyright &copy; Matthias Koch.
 
-This project is provided as-is under the MIT license. For more information see the [LICENSE file](https://github.com/nuke-build/nuke/blob/master/LICENSE).
+This project is provided as-is under the MIT license. For more information see the [LICENSE file](https://github.com/nuke-build/sample/blob/master/LICENSE).
 
 [![Built with Nuke](http://nuke.build/squared)](https://nuke.build)
